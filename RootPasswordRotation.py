@@ -1,9 +1,14 @@
 #Python Script to get Secret from Amazon Secrets Manager
-#Hashed to be used for rotatiting root passwords
+#Script will pull down current password; hash it and replace it in Puppet Module
 
 import boto3
 import crypt
+import sys
+import fileinput
+
 from botocore.exceptions import ClientError
+
+
 
 
 def get_secret():
@@ -40,8 +45,19 @@ def get_secret():
         
         pw = secret.split('"')[3] 
         pwhash = crypt.crypt(pw)
-        print "'" + pwhash + "'"
-       
+#       print pwhash
+        puppethash =  "password =>" +  "'" + pwhash + "'"
+        print puppethash     
+
+#Find Lines with 'password =>' and replace it with new generated line
+
+
+#for line in fileinput.input(["init.pp"], inplace=True):
+#    if line.strip().startswith('password =>'):
+#        line = puppethash
+#        outfile.write(line)
+
 
 
 get_secret() 
+ 
