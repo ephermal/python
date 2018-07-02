@@ -1,11 +1,8 @@
-# Use this code snippet in your app.
-# If you need more information about configurations or implementing the sample code, visit the AWS docs:   
-# https://aws.amazon.com/developers/getting-started/python/
+#Python Script to get Secret from Amazon Secrets Manager
+#Hashed to be used for rotatiting root passwords
 
 import boto3
 import crypt
-import urllib2
-import requests
 from botocore.exceptions import ClientError
 
 
