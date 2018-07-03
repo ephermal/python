@@ -1,5 +1,4 @@
 #Script to generate new random password and update Amazon Secrets Manager
-# Gerald Reid
 
 
 
@@ -15,7 +14,7 @@ endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
 region_name = "us-east-2"
 
 # defines new password characteristics
-password_charset = string.ascii_lowercase + string.digits + string.punctuation
+password_charset = string.hexdigits
 
 
 # defines new password randomly generated
@@ -26,7 +25,7 @@ def new_password(char_set, length):
 
 
 # Updates it to Amazon
-#Variable password can be changed to accomodate length
+#Variable password can be changed to accommodate length
 def update_secret():
     session = boto3.session.Session()
     client = session.client(
@@ -41,9 +40,6 @@ def update_secret():
 # Get Secret from Amazon
 def get_secret():
     global secret
-    secret_name = "root-pw-linux"
-    endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
-    region_name = "us-east-2"
 
     session = boto3.session.Session()
     client = session.client(
@@ -73,7 +69,7 @@ def get_secret():
 
         # pw = secret.split('"')[3]
         print secret
-        pwhash = crypt.crypt(secret)
+        pwhash = crypt.crypt(secret, "$6$")
         print "'" + pwhash + "'"
 
 
