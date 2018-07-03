@@ -38,8 +38,9 @@ def get_secret():
         else:
             binary_secret_data = get_secret_value_response['SecretBinary']
         
-        pw = secret.split('"')[3] 
-        pwhash = crypt.crypt(pw)
+       # pw = secret.split('"')[3] 
+        print secret
+        pwhash = crypt.crypt(secret)
         print "'" + pwhash + "'"
        
 
