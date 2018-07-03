@@ -1,16 +1,40 @@
-#Python Script to get Secret from Amazon Secrets Manager
-#Script will pull down current password; hash it and replace it in Puppet Module
-
 import boto3
 import crypt
-import sys
-import fileinput
-
+import string
+import random
 from botocore.exceptions import ClientError
 
+# Global Variables
+secret_name = "root-pw-linux"
+endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
+region_name = "us-east-2"
+
+# defines new password characteristics
+password_charset = string.ascii_lowercase + string.digits + string.punctuation
 
 
+# defines new password randomly generated
 
+
+def new_password(char_set, length):
+    if not hasattr(new_password, "rng"):
+        new_password.rng = random.SystemRandom()  # Create a static variable
+    return ''.join([new_password.rng.choice(char_set) for _ in xrange(length)])
+
+
+# Updats it to Amazon
+def update_secret():
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name,
+        endpoint_url=endpoint_url
+    )
+    password = new_password(password_charset, 16)
+    client.update_secret(SecretId=secret_name, SecretString=password)
+
+
+# Get Secret from Amazon
 def get_secret():
     global secret
     secret_name = "root-pw-linux"
@@ -42,22 +66,12 @@ def get_secret():
             secret = get_secret_value_response['SecretString']
         else:
             binary_secret_data = get_secret_value_response['SecretBinary']
-        
-        pw = secret.split('"')[3] 
-        pwhash = crypt.crypt(pw)
-#       print pwhash
-        puppethash =  "password =>" +  "'" + pwhash + "'"
-        print puppethash     
 
-#Find Lines with 'password =>' and replace it with new generated line
+        # pw = secret.split('"')[3]
+        print secret
+        pwhash = crypt.crypt(secret)
+        print "'" + pwhash + "'"
 
 
-#for line in fileinput.input(["init.pp"], inplace=True):
-#    if line.strip().startswith('password =>'):
-#        line = puppethash
-#        outfile.write(line)
-
-
-
-get_secret() 
- 
+update_secret()
+get_secret()
