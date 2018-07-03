@@ -1,4 +1,5 @@
-#Script to generate new random password and update Amazon Secrets Manager
+#Script to generate new random password and update Amazon Secrets Manager and Pull down password
+# it is salted against 512 for shadow password for linux
 
 
 
