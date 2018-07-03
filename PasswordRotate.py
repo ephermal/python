@@ -1,10 +1,15 @@
+#Script to generate new random password and update Amazon Secrets Manager
+# Gerald Reid
+
+
+
 import boto3
 import crypt
 import string
 import random
 from botocore.exceptions import ClientError
 
-# Global Variables
+# Global Declarations - this is where you change to your specific needs
 secret_name = "root-pw-linux"
 endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
 region_name = "us-east-2"
@@ -14,15 +19,14 @@ password_charset = string.ascii_lowercase + string.digits + string.punctuation
 
 
 # defines new password randomly generated
-
-
 def new_password(char_set, length):
     if not hasattr(new_password, "rng"):
         new_password.rng = random.SystemRandom()  # Create a static variable
     return ''.join([new_password.rng.choice(char_set) for _ in xrange(length)])
 
 
-# Updats it to Amazon
+# Updates it to Amazon
+#Variable password can be changed to accomodate length
 def update_secret():
     session = boto3.session.Session()
     client = session.client(
