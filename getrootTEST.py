@@ -1,4 +1,3 @@
-
 #Python Script to get Secret from Amazon Secrets Manager
 #Hashed to be used for rotatiting root passwords
 
@@ -9,7 +8,7 @@ from botocore.exceptions import ClientError
 
 def get_secret():
     global secret
-    secret_name = "root-pw-linux"
+    secret_name = "qax-test"
     endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
     region_name = "us-east-2"
 
