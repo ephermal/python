@@ -1,4 +1,4 @@
-#Python Script to get Update from Amazon Secrets Manager
+ #Python Script to get Update from Amazon Secrets Manager
 #Hashed to be used for rotatiting passwords
 
 import boto3
