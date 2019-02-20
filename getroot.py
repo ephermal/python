@@ -15,7 +15,7 @@ from botocore.exceptions import ClientError
 def get_secret():
     global secret
     secret_name = (awsSecretName)
-    endpoint_url = "https://secretsmanager.us-east-2.amazonaws.com"
+    endpoint_url = "https://secretsmanager."+(awsRegion)+".amazonaws.com"
     region_name = (awsRegion)
 
     #session = boto3.session.Session()
