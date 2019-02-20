@@ -2,10 +2,11 @@
 #Python Script to get Secret from Amazon Secrets Manager
 #Hashed to be used for rotatiting root passwords
 
+#Variables to be set
 awsAccessKey= ''
 awsSecretKey= ''
 awsSecretName=''
-awsRegion=''
+awsRegion='' #us-east-2 or whatever your secret is stored in
 
 import boto3
 import crypt
@@ -18,7 +19,7 @@ def get_secret():
     endpoint_url = "https://secretsmanager."+(awsRegion)+".amazonaws.com"
     region_name = (awsRegion)
 
-    #session = boto3.session.Session()
+
     session = boto3.Session(
     aws_access_key_id=(awsAccessKey),
     aws_secret_access_key=(awsSecretKey),
@@ -43,7 +44,7 @@ def get_secret():
             binary_secret_data = get_secret_value_response['SecretBinary']
         
        # pw = secret.split('"')[3] 
-        print secret
+        print secret()
         pwhash = crypt.crypt(secret)
         print "'" + pwhash + "'"
        
