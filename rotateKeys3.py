@@ -1,6 +1,5 @@
 # Script to rotate keys for aws
 # Some arguments are required others are optional
-# Jerry Reid
 # Version 1 : Create, Delete, Rotate Keys - Working
 # Version 2 : Edit aws credentials file (work in progress)
 
@@ -62,14 +61,14 @@ def create_key(username, aws_access_key, aws_profile):
             inactive_keys = inactive_keys + 1
         elif key['Status'] == 'Active':
             active_keys = active_keys + 1
-    if inactive_keys + active_keys >= 1:
+    if inactive_keys + active_keys >= 2:
         print(("%s already has 1 keys. As a best practice \
                 you are only allowed 1 keys.") % username)
         print(("%s is your key to refresh your memory ") % aws_access_key)
         exit()
     aws_access_key = get_key(username, aws_profile)
-    access_key_metadata = iam_client.create_access_key(UserName=username)
-    ['AccessKey']
+    access_key_metadata = iam_client.create_access_key(
+                           UserName=username)['AccessKey']
     access_key = access_key_metadata['AccessKeyId']
     secret_key = access_key_metadata['SecretAccessKey']
     print(("your new access key is %s and your new secret key is %s")
