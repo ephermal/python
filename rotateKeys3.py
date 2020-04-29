@@ -35,7 +35,7 @@ def main():
         elif args.rotate:
             rotate_key(username, aws_profile)
         else:
-            create_key(username, aws_access_key, aws_profile)
+            print("You must choose to either (r)otate or (d)elete your key.")
     except ClientError as e:
         print(("The user with the name %s cannot be found." % username))
         return e
@@ -62,9 +62,9 @@ def create_key(username, aws_access_key, aws_profile):
             inactive_keys = inactive_keys + 1
         elif key['Status'] == 'Active':
             active_keys = active_keys + 1
-    if inactive_keys + active_keys >= 2:
+    if inactive_keys + active_keys >= 1:
         print(("%s already has 1 keys. As a best practice \
-                you are only allowed one key.") % username)
+                you are only allowed 1 keys.") % username)
         print(("%s is your key to refresh your memory ") % aws_access_key)
         exit()
     aws_access_key = get_key(username, aws_profile)
