@@ -84,8 +84,8 @@ def delete_key(access_key, username, aws_profile):
     access_key = get_key(username, aws_profile)
     try:
         while i != 'y' or 'n':
-            i = input("Do you want to delete the access key " + " "
-                      + access_key + " y/n" + " ")
+            i = input("Do you want to delete the access key " + " " +
+                      access_key + "y/n" + " ")
             if i == 'y':
                 iam_client.delete_access_key(UserName=username,
                                              AccessKeyId=access_key)
