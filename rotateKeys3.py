@@ -41,7 +41,7 @@ def main():
         return e
     except ParamValidationError as e:
         print("you need to use the proper arguments i.e python3 rotateKeys3.py\
-               -u username@salesforce.com -p profile ")
+               -u username -p profile ")
         return e
     return (username, profile, aws_access_key)
 
