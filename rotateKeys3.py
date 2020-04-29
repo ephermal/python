@@ -1,7 +1,9 @@
 #Script to rotate keys for aws
 #Some arguments are required others are option
+#Requires python3
 #Version 1 : Create, Delete, Rotate Keys - Working
 #Version 2 : Edit aws credentials file (work in progress)
+
 
 import argparse
 import boto3
