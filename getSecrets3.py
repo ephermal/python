@@ -1,5 +1,7 @@
 # Script to get secrets from secret manager
 # Some arguments are required others are optional
+# Use jq to pull data as needed i.e | jq -r '$secret_key' - 
+# this will give you the secret with out quotes
 # Jerry Reid
 
 import argparse
