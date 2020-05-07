@@ -1,5 +1,6 @@
 # Script to get secrets from secret manager
 # Some arguments are required others are optional
+# Jerry Reid
 
 import argparse
 import boto3
@@ -26,8 +27,8 @@ def main():
     try:
         get_secret(secret, region, profile)
     except ParamValidationError as e:
-        print("you need to use the proper arguments i.e python3 rotateKeys3.py\
-               -u username@salesforce.com -p profile ")
+        print("you need to use the proper arguments i.e python3 getSecrets3.py\
+               -p profile -r region -s secret ")
         return e
 
 
