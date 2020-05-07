@@ -1,5 +1,5 @@
-#AWS Lambda Code
-#environment variables are set in AWS and encrypted
+# AWS Lambda Code
+# environment variables are set in AWS and encrypted
 
 
 from httplib2 import Http
