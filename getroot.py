@@ -1,4 +1,4 @@
- 
+  
 #Python Script to get Secret from Amazon Secrets Manager
 #Hashed to be used for rotatiting root passwords
 
