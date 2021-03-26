@@ -34,7 +34,7 @@ def sendit():
     # If not all appointments are booked...
     lookforstring \
         = "At this time, all appointments in Massachusetts are booked."
-    if lookforstring.encode() in html:
+    if lookforstring.encode() not in html:
         client.messages \
             .create(
              body='CVS Has appointments available',
