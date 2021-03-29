@@ -19,7 +19,7 @@ UPDATE = 60.0
 context = ssl.create_default_context()
 
 # This function repeatedly reads the CVS website, and if any appointments are
-# available in your state, it emails you.
+# available in your state, it texts you.
 
 
 def sendit():
